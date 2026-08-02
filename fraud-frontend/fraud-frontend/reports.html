@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports — FraudWatch</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+    <aside class="sidebar">
+        <a class="brand" href="index.html">
+            <svg class="brand-mark" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="6" fill="#1A2129"/>
+                <path d="M4 15 L9 15 L11 9 L15 20 L17 15 L24 15" stroke="#1F6F6B" stroke-width="1.6" fill="none"/>
+            </svg>
+            FraudWatch
+        </a>
+        <nav class="side-nav">
+            <a href="dashboard.html" class="side-link">Dashboard</a>
+            <a href="predict.html" class="side-link">Predict</a>
+            <a href="transactions.html" class="side-link">Transactions</a>
+            <a href="reports.html" class="side-link active">Reports</a>
+            <a href="settings.html" class="side-link">Settings</a>
+        </nav>
+        <div class="side-foot">
+            Logged in as<br><strong style="color:#C7CCD3;">Aayush</strong>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="page-header">
+            <div>
+                <h1>Reports</h1>
+                <p>Model performance and fraud pattern summaries</p>
+            </div>
+        </div>
+
+        <div class="report-grid">
+            <div class="report-card">
+                <h3>Weekly summary</h3>
+                <p>Fraud rate, volume, and precision for the last 7 days.</p>
+                <button class="btn btn-outline btn-block">Download PDF</button>
+            </div>
+            <div class="report-card">
+                <h3>Monthly summary</h3>
+                <p>Full month rollup with model drift and threshold notes.</p>
+                <button class="btn btn-outline btn-block">Download PDF</button>
+            </div>
+            <div class="report-card">
+                <h3>Custom range</h3>
+                <p>Pick any date range and export a tailored report.</p>
+                <button class="btn btn-outline btn-block">Build report</button>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">Fraud rate by merchant category</div>
+            <div class="panel-sub">Percent of flagged transactions, last 30 days</div>
+            <div class="bar-chart">
+                <div class="bar-col"><div class="bar" style="height:22%"></div><span class="bar-label">Grocery</span></div>
+                <div class="bar-col"><div class="bar" style="height:35%"></div><span class="bar-label">Travel</span></div>
+                <div class="bar-col"><div class="bar high" style="height:78%"></div><span class="bar-label">Electronics</span></div>
+                <div class="bar-col"><div class="bar" style="height:18%"></div><span class="bar-label">Dining</span></div>
+                <div class="bar-col"><div class="bar high" style="height:64%"></div><span class="bar-label">Crypto</span></div>
+                <div class="bar-col"><div class="bar" style="height:12%"></div><span class="bar-label">Utilities</span></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">30-day anomaly trend</div>
+            <div class="panel-sub">Daily flagged-transaction pulse</div>
+            <div data-pulse data-pulse-spikes="[0.15, 0.4, 0.62, 0.85]"></div>
+        </div>
+    </main>
+</div>
+
+<script src="js/pulse.js"></script>
+</body>
+</html>

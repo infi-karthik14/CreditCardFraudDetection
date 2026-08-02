@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >FraudWatch — Every transaction leaves a heartbeat</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<nav class="nav">
+    <a class="brand" href="index.html">
+        <svg class="brand-mark" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="6" fill="#10151C"/>
+            <path d="M4 15 L9 15 L11 9 L15 20 L17 15 L24 15" stroke="#1F6F6B" stroke-width="1.6" fill="none"/>
+        </svg>
+        FraudWatch
+    </a>
+    <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="login.html">Log in</a>
+    </div>
+    <a href="login.html" class="btn btn-primary">Get started</a>
+</nav>
+
+<section class="hero">
+    <span class="eyebrow">Real-time transaction monitoring</span>
+    <h1>Every transaction leaves a heartbeat. We catch the ones that skip a beat.</h1>
+    <p>A trained model reads each transaction the instant it happens — flagging anomalies before they become chargebacks.</p>
+    <div class="hero-actions">
+        <a href="predict.html" class="btn btn-primary">Try a prediction</a>
+        <a href="dashboard.html" class="btn btn-outline">View dashboard</a>
+    </div>
+
+    <div class="pulse-frame">
+        <div class="pulse-frame-header">
+            <span><span class="pulse-dot"></span>LIVE FEED</span>
+            <span>txn_88213 · $412.00 · 03:41:09</span>
+        </div>
+        <div data-pulse data-pulse-spikes="[0.35, 0.71]"></div>
+    </div>
+</section>
+
+<section class="features" id="features">
+    <div class="feature">
+        <span class="feature-index">Train</span>
+        <h3>Train the model</h3>
+        <p>Feed labeled transaction history through preprocessing and a classifier tuned for extreme class imbalance — fraud is rare by design.</p>
+    </div>
+    <div class="feature">
+        <span class="feature-index">Visualize</span>
+        <h3>Visualize fraud patterns</h3>
+        <p>See where fraud clusters — by amount, time of day, and feature correlation — in a dashboard built for analysts, not just engineers.</p>
+    </div>
+    <div class="feature">
+        <span class="feature-index">Predict</span>
+        <h3>Predict in real time</h3>
+        <p>Submit a transaction's features and get a risk score back in milliseconds, with a clear verdict and confidence level.</p>
+    </div>
+</section>
+
+<footer>
+    <span>FraudWatch © 2026</span>
+    <span>Built with a Java backend, Python ML service</span>
+</footer>
+
+<script src="js/pulse.js"></script>
+</body>
+</html>

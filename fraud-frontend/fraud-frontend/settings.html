@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings — FraudWatch</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+    <aside class="sidebar">
+        <a class="brand" href="index.html">
+            <svg class="brand-mark" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="6" fill="#1A2129"/>
+                <path d="M4 15 L9 15 L11 9 L15 20 L17 15 L24 15" stroke="#1F6F6B" stroke-width="1.6" fill="none"/>
+            </svg>
+            FraudWatch
+        </a>
+        <nav class="side-nav">
+            <a href="dashboard.html" class="side-link">Dashboard</a>
+            <a href="predict.html" class="side-link">Predict</a>
+            <a href="transactions.html" class="side-link">Transactions</a>
+            <a href="reports.html" class="side-link">Reports</a>
+            <a href="settings.html" class="side-link active">Settings</a>
+        </nav>
+        <div class="side-foot">
+            Logged in as<br><strong style="color:#C7CCD3;">Aayush</strong>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="page-header">
+            <div>
+                <h1>Settings</h1>
+                <p>Manage your account, notifications, and API access</p>
+            </div>
+        </div>
+
+        <div class="settings-grid">
+            <div class="panel settings-section">
+                <div class="panel-title">Profile</div>
+                <div class="panel-sub">Basic account information</div>
+                <form class="form-grid">
+                    <div class="field">
+                        <label for="fullName">Full name</label>
+                        <input type="text" id="fullName" value="Aayush">
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" value="aayush@fraudwatch.dev">
+                    </div>
+                    <div class="field full">
+                        <label for="role">Role</label>
+                        <input type="text" id="role" value="Analyst" disabled>
+                    </div>
+                    <div class="field full">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel settings-section">
+                <div class="panel-title">Notifications</div>
+                <div class="panel-sub">Choose what you're alerted about</div>
+
+                <div class="toggle-row">
+                    <div class="toggle-row-text">
+                        <strong>High-risk transactions</strong>
+                        <span>Notify when a transaction scores above 0.8</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <div class="toggle-row-text">
+                        <strong>Daily summary email</strong>
+                        <span>A digest of flagged transactions each morning</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <div class="toggle-row-text">
+                        <strong>Model retraining alerts</strong>
+                        <span>Notify when the model is retrained or drifts</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">API access</div>
+            <div class="panel-sub">Used by the Java backend to call the prediction service</div>
+            <div class="api-key-box">
+                <span id="apiKeyText">sk_live_••••••••••••7f2a</span>
+                <button id="revealKey">Reveal</button>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    document.getElementById('revealKey').addEventListener('click', function () {
+        const el = document.getElementById('apiKeyText');
+        const revealed = el.textContent.includes('•');
+        el.textContent = revealed ? 'sk_live_9c31f8b2d7e4a67f2a' : 'sk_live_••••••••••••7f2a';
+        this.textContent = revealed ? 'Hide' : 'Reveal';
+    });
+</script>
+</body>
+</html>

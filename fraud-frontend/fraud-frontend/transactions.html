@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions — FraudWatch</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+    <aside class="sidebar">
+        <a class="brand" href="index.html">
+            <svg class="brand-mark" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="6" fill="#1A2129"/>
+                <path d="M4 15 L9 15 L11 9 L15 20 L17 15 L24 15" stroke="#1F6F6B" stroke-width="1.6" fill="none"/>
+            </svg>
+            FraudWatch
+        </a>
+        <nav class="side-nav">
+            <a href="dashboard.html" class="side-link">Dashboard</a>
+            <a href="predict.html" class="side-link">Predict</a>
+            <a href="transactions.html" class="side-link active">Transactions</a>
+            <a href="reports.html" class="side-link">Reports</a>
+            <a href="settings.html" class="side-link">Settings</a>
+        </nav>
+        <div class="side-foot">
+            Logged in as<br><strong style="color:#C7CCD3;">Aayush</strong>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="page-header">
+            <div>
+                <h1>Transactions</h1>
+                <p>Full ledger of scanned transactions across all accounts</p>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="toolbar">
+                <input type="search" id="searchInput" placeholder="Search by transaction ID or location…">
+                <select id="statusFilter">
+                    <option value="all">All statuses</option>
+                    <option value="safe">Safe</option>
+                    <option value="fraud">Fraud</option>
+                </select>
+                <select id="rangeFilter">
+                    <option>Last 24 hours</option>
+                    <option>Last 7 days</option>
+                    <option>Last 30 days</option>
+                </select>
+            </div>
+
+            <table id="txnTable">
+                <thead>
+                <tr><th>Txn ID</th><th>Time</th><th>Amount</th><th>Location</th><th>Risk score</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                <tr data-status="safe"><td class="txn-id">TXN-88213</td><td>03:41:09</td><td class="amount">$412.00</td><td>Lucknow, IN</td><td class="mono">0.12</td><td><span class="badge badge-safe">Safe</span></td></tr>
+                <tr data-status="fraud"><td class="txn-id">TXN-88214</td><td>03:40:52</td><td class="amount">$2,150.00</td><td>Lagos, NG</td><td class="mono">0.91</td><td><span class="badge badge-risk">Fraud</span></td></tr>
+                <tr data-status="safe"><td class="txn-id">TXN-88215</td><td>03:39:44</td><td class="amount">$76.40</td><td>Delhi, IN</td><td class="mono">0.04</td><td><span class="badge badge-safe">Safe</span></td></tr>
+                <tr data-status="fraud"><td class="txn-id">TXN-88216</td><td>03:38:10</td><td class="amount">$980.00</td><td>Singapore, SG</td><td class="mono">0.68</td><td><span class="badge badge-risk">Fraud</span></td></tr>
+                <tr data-status="safe"><td class="txn-id">TXN-88217</td><td>03:37:02</td><td class="amount">$34.99</td><td>Mumbai, IN</td><td class="mono">0.02</td><td><span class="badge badge-safe">Safe</span></td></tr>
+                <tr data-status="safe"><td class="txn-id">TXN-88218</td><td>03:35:47</td><td class="amount">$150.00</td><td>Pune, IN</td><td class="mono">0.09</td><td><span class="badge badge-safe">Safe</span></td></tr>
+                <tr data-status="fraud"><td class="txn-id">TXN-88219</td><td>03:34:21</td><td class="amount">$3,420.00</td><td>Manila, PH</td><td class="mono">0.87</td><td><span class="badge badge-risk">Fraud</span></td></tr>
+                <tr data-status="safe"><td class="txn-id">TXN-88220</td><td>03:33:08</td><td class="amount">$21.50</td><td>Kanpur, IN</td><td class="mono">0.01</td><td><span class="badge badge-safe">Safe</span></td></tr>
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <span id="rowCount">8 transactions</span>
+                <div class="page-btns">
+                    <button class="current">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const statusFilter = document.getElementById('statusFilter');
+    const rows = Array.from(document.querySelectorAll('#txnTable tbody tr'));
+    const rowCount = document.getElementById('rowCount');
+
+    function applyFilters() {
+        const q = searchInput.value.trim().toLowerCase();
+        const status = statusFilter.value;
+        let visible = 0;
+
+        rows.forEach((row) => {
+            const text = row.textContent.toLowerCase();
+            const matchesQuery = !q || text.includes(q);
+            const matchesStatus = status === 'all' || row.dataset.status === status;
+            const show = matchesQuery && matchesStatus;
+            row.style.display = show ? '' : 'none';
+            if (show) visible++;
+        });
+
+        rowCount.textContent = `${visible} transaction${visible === 1 ? '' : 's'}`;
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+    statusFilter.addEventListener('change', applyFilters);
+</script>
+</body>
+</html>

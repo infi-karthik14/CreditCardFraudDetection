@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in — FraudWatch</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<div class="auth-page">
+    <div class="auth-bg-glow"></div>
+    <canvas id="bgCanvas"></canvas>
+
+    <div class="auth-card">
+        <a class="brand" href="index.html">
+            <svg class="brand-mark" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="6" fill="#10151C"/>
+                <path d="M4 15 L9 15 L11 9 L15 20 L17 15 L24 15" stroke="#1F6F6B" stroke-width="1.6" fill="none"/>
+            </svg>
+            FraudWatch
+        </a>
+        <p class="auth-subtitle">Log in to monitor transactions</p>
+
+        <div class="auth-error" id="authError">Incorrect email or password. Try again.</div>
+
+        <form id="loginForm">
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@bank.com" required>
+            </div>
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
+            <div class="auth-meta">
+                <label><input type="checkbox" style="margin-right:6px;">Remember me</label>
+                <a href="#">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </form>
+
+        <div class="auth-footer">
+            Don't have an account? <a href="index.html" style="color:#1F6F6B;font-weight:600;">Request access</a>
+        </div>
+    </div>
+</div>
+
+<script src="js/network-bg.js"></script>
+<script>
+    // Placeholder auth flow — wire this up to AuthController's /api/auth/login
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const errorBox = document.getElementById('authError');
+
+        try {
+            const res = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (!res.ok) throw new Error('Invalid credentials');
+
+            const data = await res.json();
+            localStorage.setItem('token', data.token);
+            window.location.href = 'dashboard.html';
+        } catch (err) {
+            errorBox.style.display = 'block';
+        }
+    });
+</script>
+</body>
+</html>

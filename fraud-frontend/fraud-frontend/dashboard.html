@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — FraudWatch </title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+    <aside class="sidebar" href="index.html">
+        <a class="brand" href="index.html">
+            <svg class="brand-mark" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="6" fill="#1A2129"/>
+                <path d="M4 15 L9 15 L11 9 L15 20 L17 15 L24 15" stroke="#1F6F6B" stroke-width="1.6" fill="none"/>
+            </svg>
+            FraudWatch
+        </a>
+        <nav class="side-nav">
+            <a href="dashboard.html" class="side-link active">Dashboard</a>
+            <a href="predict.html" class="side-link">Predict</a>
+            <a href="transactions.html" class="side-link">Transactions</a>
+            <a href="reports.html" class="side-link">Reports</a>
+            <a href="settings.html" class="side-link">Settings</a>
+        </nav>
+        <div class="side-foot">
+            Logged in as<br><strong style="color:#C7CCD3;">Aayush</strong>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="page-header">
+            <div>
+                <h1>Overview</h1>
+                <p>Last 24 hours across all monitored accounts</p>
+            </div>
+            <a href="predict.html" class="btn btn-primary">New prediction</a>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-label">Transactions scanned</div>
+                <div class="stat-value">18,402</div>
+                <div class="stat-delta">↑ 4.2% vs yesterday</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Flagged as fraud</div>
+                <div class="stat-value risk">47</div>
+                <div class="stat-delta down">↑ 0.25% flag rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Model precision</div>
+                <div class="stat-value">94.6%</div>
+                <div class="stat-delta">↑ 0.8% this week</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Avg. response time</div>
+                <div class="stat-value">112ms</div>
+                <div class="stat-delta">stable</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">Transaction pulse</div>
+            <div class="panel-sub">Live anomaly stream — spikes mark model-flagged transactions</div>
+            <div data-pulse data-pulse-spikes="[0.22, 0.58, 0.81]"></div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">Recent transactions</div>
+            <div class="panel-sub">Most recent activity across the ledger</div>
+            <table>
+                <thead>
+                <tr><th>Txn ID</th><th>Time</th><th>Amount</th><th>Location</th><th>Risk score</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="txn-id">TXN-88213</td>
+                    <td>03:41:09</td>
+                    <td class="amount">$412.00</td>
+                    <td>Lucknow, IN</td>
+                    <td class="mono">0.12</td>
+                    <td><span class="badge badge-safe">Safe</span></td>
+                </tr>
+                <tr>
+                    <td class="txn-id">TXN-88214</td>
+                    <td>03:40:52</td>
+                    <td class="amount">$2,150.00</td>
+                    <td>Lagos, NG</td>
+                    <td class="mono">0.91</td>
+                    <td><span class="badge badge-risk">Fraud</span></td>
+                </tr>
+                <tr>
+                    <td class="txn-id">TXN-88215</td>
+                    <td>03:39:44</td>
+                    <td class="amount">$76.40</td>
+                    <td>Delhi, IN</td>
+                    <td class="mono">0.04</td>
+                    <td><span class="badge badge-safe">Safe</span></td>
+                </tr>
+                <tr>
+                    <td class="txn-id">TXN-88216</td>
+                    <td>03:38:10</td>
+                    <td class="amount">$980.00</td>
+                    <td>Singapore, SG</td>
+                    <td class="mono">0.68</td>
+                    <td><span class="badge badge-risk">Fraud</span></td>
+                </tr>
+                <tr>
+                    <td class="txn-id">TXN-88217</td>
+                    <td>03:37:02</td>
+                    <td class="amount">$34.99</td>
+                    <td>Mumbai, IN</td>
+                    <td class="mono">0.02</td>
+                    <td><span class="badge badge-safe">Safe</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
+<script src="js/pulse.js"></script>
+</body>
+</html>
